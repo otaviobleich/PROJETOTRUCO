@@ -4,14 +4,23 @@ import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
 
 export default function App() {
 
-  const [ponto, setPontos] = useState(10)
+  const [nos, setNos] = useState(10)
+  const [eles, setEles] = useState(10)
 
-  function aumentar(){
-    setPontos(ponto + 1)
+  function aumentarNos(){
+    setNos(nos + 1)
   }
 
-  function diminuir(){
-    setPontos(ponto - 1)
+  function diminuirNos(){
+    setNos(nos - 1)
+  }
+
+  function aumentarEles(){
+    setEles(eles + 1)
+  }
+
+  function diminuirEles(){
+    setEles(eles - 1)
   }
 
   return (
@@ -22,19 +31,39 @@ export default function App() {
         style={styles.logo}
       />
 
-      <Text style={styles.titulo}>MARCADOR</Text>
+      <View style={styles.placar}>
 
-      <Text style={styles.numero}>{ponto}</Text>
+        {/* NÓS */}
+        <View style={styles.time}>
+          <Text style={styles.titulo}>NÓS</Text>
+          <Text style={styles.numero}>{nos}</Text>
 
-      <View style={styles.botoes}>
+          <View style={styles.botoes}>
+            <TouchableOpacity style={styles.botaoMais} onPress={aumentarNos}>
+              <Text style={styles.textoBotao}>+</Text>
+            </TouchableOpacity>
 
-        <TouchableOpacity style={styles.botaoMais} onPress={aumentar}>
-          <Text style={styles.textoBotao}>+</Text>
-        </TouchableOpacity>
+            <TouchableOpacity style={styles.botaoMenos} onPress={diminuirNos}>
+              <Text style={styles.textoBotao}>-</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
 
-        <TouchableOpacity style={styles.botaoMenos} onPress={diminuir}>
-          <Text style={styles.textoBotao}>-</Text>
-        </TouchableOpacity>
+        {/* ELES */}
+        <View style={styles.time}>
+          <Text style={styles.titulo}>ELES</Text>
+          <Text style={styles.numero}>{eles}</Text>
+
+          <View style={styles.botoes}>
+            <TouchableOpacity style={styles.botaoMais} onPress={aumentarEles}>
+              <Text style={styles.textoBotao}>+</Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity style={styles.botaoMenos} onPress={diminuirEles}>
+              <Text style={styles.textoBotao}>-</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
 
       </View>
 
@@ -56,20 +85,28 @@ const styles = StyleSheet.create({
     width:120,
     height:60,
     resizeMode:'contain',
-    marginBottom:20
+    marginBottom:40
+  },
+
+  placar:{
+    flexDirection:'row'
+  },
+
+  time:{
+    alignItems:'center',
+    marginHorizontal:20
   },
 
   titulo:{
     fontSize:18,
     fontWeight:'bold',
-    color:'#666',
-    marginBottom:30
+    color:'#666'
   },
 
   numero:{
     fontSize:60,
     fontWeight:'bold',
-    marginBottom:60
+    marginVertical:20
   },
 
   botoes:{
@@ -80,8 +117,8 @@ const styles = StyleSheet.create({
     backgroundColor:'#0f5f3d',
     padding:15,
     borderRadius:10,
-    marginRight:20,
-    width:70,
+    marginRight:10,
+    width:60,
     alignItems:'center'
   },
 
@@ -89,7 +126,7 @@ const styles = StyleSheet.create({
     backgroundColor:'#8b0024',
     padding:15,
     borderRadius:10,
-    width:70,
+    width:60,
     alignItems:'center'
   },
 
